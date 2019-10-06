@@ -21,3 +21,7 @@ If the verb on Past participle is equal to simple past, do not print on output
 **Verbs that do not change (e.g put) are not present in the files**
 
 ![Common verbs](sets.png "Groupss")
+
+# List of common verbs of Past Participle
+Imported on [Quizlet](https://quizlet.com/_77y63j)
+
