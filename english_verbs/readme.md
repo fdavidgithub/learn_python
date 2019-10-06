@@ -12,7 +12,7 @@ If the verb on Past participle is equal to simple past, do not print on output
     [verb present/future];[verb past participle]
 
 # Examples
-| Verb  | Simples past | Past participle | OUTOUT |
+| Verb  | Simples past | Past participle | OUTPUT |
 |-------|--------------|-----------------|--------|
 | drink | drank        | drunk           |  Yes   |
 | buy   | bought       | bought          |  No    |
