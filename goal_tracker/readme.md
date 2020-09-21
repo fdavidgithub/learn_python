@@ -8,7 +8,7 @@ _and generate context to my about in linkedin._
 **GoalTracker** is a CLI (Command Line Interface) where I management my stydy and work goals and update kanban, flashcards and complete talks. Completion percentages are calculated and published.
 
 # Connected with
-* fdavid.com.br
+* [fdavid.com.br](www.fdavid.com.br)
 * Linkedin.com
 * Trello.com
 
