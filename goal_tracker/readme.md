@@ -12,3 +12,11 @@ _and generate context to my about in linkedin._
 * Linkedin.com
 * Trello.com
 
+```python
+"""
+Mindmaps, organizers etc
+
+figma.com miro.com Draw.io creately.com XMind Freemind clickup.com goconqr.com mindmeister.com
+"""       ] 
+```
+
