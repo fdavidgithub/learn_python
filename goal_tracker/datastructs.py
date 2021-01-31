@@ -1,6 +1,12 @@
+class Datum:
+    def __init__ (self, name):
+        self.name = name
+        self.value = 0
+        self.ref = None
+
 class TreeNode:
-    def __init__ (self, data):
-        self.data = data
+    def __init__ (self, Datum):
+        self.data = Datum
         self.children = []
         self.parent = None
 
@@ -25,7 +31,7 @@ class TreeNode:
         else:
             prefix = "|"
 
-        print(prefix + self.data)
+        print(prefix + self.data.name + " (" + str(self.data.value) + "%)")
 
         if self.children:
             for child in self.children:
