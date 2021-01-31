@@ -1,0 +1,14 @@
+FaceDetect
+Seek face in image using Haar Cascade
+
+References
+https://docs.opencv.org/trunk/d7/d8b/tutorial_py_face_detection.html
+https://www.youtube.com/watch?v=88HdqNDQsEk
+
+Created Octuber 2017
+Usage: facedetect <image file>
+
+Compile or execute
+python <usage>
+
+

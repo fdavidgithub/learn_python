@@ -1,0 +1,20 @@
+SOURCE: https://www.freelancer.com/projects/php/Python-OpenCV-track-soccer-ball/
+
+---
+
+Simple python script with OpenCV to track a ball in image and return position (x, y).
+
+IMPORTANT ! Do not use color tracking or template matching because the ball could be orange or another color.
+
+Parameter : --image path.
+
+The script may run on linux and return x,y or 0,0 if not found.
+
+Here some videos where image are extracted for your testing :
+
+https://www.youtube.com/watch?v=6bzTOJvd9pQ
+
+https://www.youtube.com/watch?v=IfdTSB5NlGg
+
+https://www.youtube.com/watch?v=SgyZddk4lCs
+
