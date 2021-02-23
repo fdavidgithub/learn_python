@@ -1,6 +1,10 @@
 from math import sqrt, isnan
 
 def euclidian(dest1, dest2):
+    '''
+    dest1: array of x value
+    dest2: array of y value
+    '''
     res = 0
 
     for x, y in zip(dest1, dest2):
