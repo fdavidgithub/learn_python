@@ -5,6 +5,5 @@
 
 ## Test this library
 * [Static](Suggestion_System.ipynb)
-<br>
 * [Dinamic](https://colab.research.google.com/drive/1fSkdNVuO5DGq4llkGVj7jTx8hFsKtv-v?usp=sharing)
 
