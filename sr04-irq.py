@@ -30,23 +30,21 @@ class Sr04:
         self.signalOn = 0
         self.signalOff = 0
 
-    def echoHigh(self, pin):
-        self.signalOn = tm.ticks_us()
+    def echoLow(self, pin):
+        self.signalOff = tm.ticks_us()
         self.led.low()
-        self.trig.low()
 
     def trigHigh(self, pin):
-        self.led.high()
+        self.signalOn = tm.ticks_us()
  
-        while self.trig.value() == 1:
-            self.signalOff = tm.ticks_us()
-            
+        self.led.high()
+        tm.sleep_us(5)
+        self.trig.low()
+           
     def distance(self):
         self.trig.high()
 
-        while self.trig.value() == 1:
-            delta = tm.ticks_diff(self.signalOn, self.signalOff)
-    
+        delta = tm.ticks_diff(self.signalOn, self.signalOff)
         distance = delta#(delta * self.fator() ) / 2
 
         return distance
@@ -57,5 +55,5 @@ class Sr04:
         tm.sleep_us(5)
 
         self.trig.irq(handler = self.trigHigh, trigger=Pin.IRQ_RISING)
-        self.echo.irq(handler = self.echoHigh, trigger=Pin.IRQ_RISING)
+        self.echo.irq(handler = self.echoLow, trigger=Pin.IRQ_FALLING)
 
