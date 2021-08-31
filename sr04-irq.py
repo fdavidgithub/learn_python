@@ -1,3 +1,4 @@
+import machine
 from machine import Pin, Timer
 import utime as tm
 
@@ -17,43 +18,46 @@ def distance():
 '''
 
 class Sr04:
-    def __init__(self):
-        self.SOUNDSPEED = 343.0              # meters per seconds
-        self.M2CM = 100.0
-        self.S2US = 1000000.0
-        self.fator = (lambda: self.SOUNDSPEED * self.M2CM / self.S2US)
-
-        self.trig = Pin(0, Pin.OUT)
-        self.echo = Pin(1, Pin.IN)
-        self.led = Pin(25, Pin.OUT)
-
+    def __init__(self, pinTrig=0, pinEcho=1):
+        # Variables
+        self.FATORCM = 58
+        self.FATORINCH = 148
+        self.CYCLE = 60
         self.signalOn = 0
         self.signalOff = 0
 
-    def echoLow(self, pin):
-        self.signalOff = tm.ticks_us()
-        self.led.low()
+        # Pin mode
+        self.trig = Pin(pinTrig, Pin.OUT)
+        self.echo = Pin(pinEcho, Pin.IN)
+
+        # Interrupt
+        self.echo.irq(handler = self.echoHigh, trigger=Pin.IRQ_RISING)
+        self.echo.irq(handler = self.echoLow, trigger=Pin.IRQ_FALLING)
+        self.trig.irq(handler = self.trigHigh, trigger=Pin.IRQ_RISING)
+        self.trig.irq(handler = self.trigLow, trigger=Pin.IRQ_FALLING)
+
+    def trigLow(self, pin):
+        print("trig: low %s" % self.echo.value())
+        self.signalOn = tm.ticks_us()
 
     def trigHigh(self, pin):
-        self.signalOn = tm.ticks_us()
- 
-        self.led.high()
-        tm.sleep_us(5)
-        self.trig.low()
-           
+        print("trig: high")
+
+    def echoLow(self, pin):
+        print("echo: low %s" % self.echo.value())
+        self.signalOff = tm.ticks_us()
+
+    def echoHigh(self, pin):
+        print("echo: high")
+
     def distance(self):
         self.trig.high()
-
-        delta = tm.ticks_diff(self.signalOn, self.signalOff)
-        distance = delta#(delta * self.fator() ) / 2
-
-        return distance
-
-    def init(self):
-        self.led.low()
+        tm.sleep_us(10)
         self.trig.low()
-        tm.sleep_us(5)
 
-        self.trig.irq(handler = self.trigHigh, trigger=Pin.IRQ_RISING)
-        self.echo.irq(handler = self.echoLow, trigger=Pin.IRQ_FALLING)
+        delta = tm.ticks_diff(self.signalOff, self.signalOn)
+        distance = delta / self.FATORCM
+
+        print("Fator %s | On %s | Off %s | %s" % (self.FATORCM, self.signalOn, self.signalOff, delta) ) 
+        return distance
 
